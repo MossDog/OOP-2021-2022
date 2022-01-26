@@ -7,8 +7,7 @@ public class Main
         System.out.println("Hello world");
 
         Animal misty = new Animal("Misty");
-        Animal lucy = new Animal("Lucy");
-
+        Animal lucy = new Animal("Lucy");    
         lucy = misty;
         misty.setName("Tara");
 
