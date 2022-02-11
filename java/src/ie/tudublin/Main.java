@@ -20,7 +20,7 @@ public class Main
         processing.core.PApplet.runSketch( a, new Loops());
     }
 
-    public void cat()
+    public static void cat()
     {
         System.out.println("Hello world");
 
@@ -34,18 +34,19 @@ public class Main
         System.out.println(lucy);
 
         
-        Cat cat = new Cat("Ginger");
+        Cat ginger = new Cat("Ginger");
 
-        while(cat.getNumLives() > 0)
+        while(ginger.getNumLives() > 0)
         {
-            cat.kill();
+            ginger.kill();
         }
-        cat.kill();
+        ginger.kill();
 
     }
     public static void main(String[] args)
     {
-        loops();
+        cat();
+        //loops();
 
         // Tara Misty
         // Tara Tara
