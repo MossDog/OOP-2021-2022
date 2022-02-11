@@ -1,15 +1,26 @@
 package ie.tudublin;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class BugZap extends PApplet {
 	public void settings() {
 		size(500, 500);
 	}
 
+	PFont f;
+
 	public void setup() {
 		reset();
+		f = createFont("Arial", 16);
 	}
+
+	/* void menuScreen(){
+		textAlign(CENTER, CENTER);
+		text("BUGZAP!", width / 2, height / 2 - 250);
+		text("PRESS ANY KEY TO START", width / 2, height / 2);
+		while(keyPressed != true){}
+	} */
 
 	float playerX, playerY;
 	float playerSpeed = 5;
@@ -18,6 +29,8 @@ public class BugZap extends PApplet {
 
 	float bugX, bugY, bugWidth = 30;
 	float halfBugWidth = bugWidth / 2;
+	boolean menuPassed = false;
+
 
 	int score = 0;
 
@@ -34,7 +47,7 @@ public class BugZap extends PApplet {
 
 	void drawBug(float x, float y) {
 		// Draw the bug
-		stroke(50);
+		stroke(150);
 		float saucerHeight = bugWidth * 0.7f;
 		line(x, y - saucerHeight, x - halfBugWidth, y);
 		line(x, y - saucerHeight, x + halfBugWidth, y);
@@ -71,6 +84,7 @@ public class BugZap extends PApplet {
 	}
 
 	public void keyPressed() {
+		menuPassed = true;
 		if (keyCode == LEFT) {
 			if (playerX > halfPlayerWidth) {
 				playerX -= playerSpeed;
@@ -83,8 +97,12 @@ public class BugZap extends PApplet {
 		}
 		if (keyCode == ' ')
 		{
-			line(playerX, playerY, playerX, bugY);
-			
+			stroke(255, 0, 0);
+
+			rect(playerX - 2, bugY , 4, playerY - bugY, 2);
+
+			//fill(255, 255, 255);
+
 			if (playerX > bugX - halfBugWidth && playerX < bugX + halfBugWidth)
 			{
 				score ++;
@@ -110,24 +128,34 @@ public class BugZap extends PApplet {
 
 	public void draw() {
 		background(0);
-		if (gameMode == 0)
-		{
-			fill(255);
-			drawPlayer(playerX, playerY, playerWidth);
-			drawBug(bugX, bugY);
-			moveBug();
+		if(menuPassed == false){
 
-			text("Score: " + score, 20, 20);
-		}
-		else
-		{
-			textAlign(CENTER, CENTER);
-			text("GAME OVER!!!", width / 2, height / 2);
-		}
+			textFont(f, 16);
+			textAlign(CENTER);
+			text("BUGZAP!", width / 2, height / 2 - 125);
+			text("PRESS ANY KEY TO START", width / 2, height / 2);
 
-		if (bugY > height - 50)
-		{
-			gameMode = 1;
+		}else{
+
+			if (gameMode == 0)
+			{
+				drawPlayer(playerX, playerY, playerWidth);
+				drawBug(bugX, bugY);
+				moveBug();
+	
+				text("Score: " + score, 20, 20);
+			}
+			else
+			{
+				textAlign(CENTER, CENTER);
+				text("GAME OVER!!!", width / 2, height / 2);
+			}
+	
+			if (bugY > height - 50)
+			{
+				gameMode = 1;
+			}
+
 		}
 
 	}
