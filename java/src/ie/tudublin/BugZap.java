@@ -34,7 +34,7 @@ public class BugZap extends PApplet {
 
 	void drawBug(float x, float y) {
 		// Draw the bug
-		stroke(255);
+		stroke(50);
 		float saucerHeight = bugWidth * 0.7f;
 		line(x, y - saucerHeight, x - halfBugWidth, y);
 		line(x, y - saucerHeight, x + halfBugWidth, y);
@@ -63,11 +63,10 @@ public class BugZap extends PApplet {
 
 		line(x - halfPlayerWidth, y + playerHeight * 0.5f, x - (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f);
 		line(x + halfPlayerWidth, y + playerHeight * 0.5f, x + (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f);
-
-		line(x - (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f, x + (halfPlayerWidth * 0.8f),
-				y + playerHeight * 0.3f);
+		line(x - (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f, x + (halfPlayerWidth * 0.8f), y + playerHeight * 0.3f);
 
 		line(x, y, x, y + playerHeight * 0.3f);
+		strokeWeight(5);
 
 	}
 
@@ -84,15 +83,12 @@ public class BugZap extends PApplet {
 		}
 		if (keyCode == ' ')
 		{
+			line(playerX, playerY, playerX, bugY);
+			
 			if (playerX > bugX - halfBugWidth && playerX < bugX + halfBugWidth)
 			{
-				line(playerX, playerY, playerX, bugY);
 				score ++;
 				resetBug();
-			}
-			else
-			{
-				line(playerX, playerY, playerX, 0);
 			}
 		}
 	}
