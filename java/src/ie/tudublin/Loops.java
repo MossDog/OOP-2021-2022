@@ -5,12 +5,14 @@ import javax.swing.SwingWorker;
 import com.jogamp.opengl.util.awt.AWTGLPixelBuffer.SingleAWTGLPixelBufferProvider;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 
 public class Loops extends PApplet
 {
 
 
 	int mode = 0;
+	PFont f;
 
 	public void settings()
 	{
@@ -21,7 +23,7 @@ public class Loops extends PApplet
 		colorMode(HSB, 255, 255, 255);
 		noStroke();
 		background(255);
-		
+		f = createFont("Arial", 16, true);
 	}
 
 	public void keyPressed()
@@ -98,11 +100,27 @@ public class Loops extends PApplet
         }
 		*/
 
+		
+		background(0);
+		String number;
 		for(int i = 0; i < boxes * boxes; i++){
 			stroke(map(120, 0, 360, 0, 255), 255, 255);
 			fill(0);
-			rect((width/boxes) * (i%boxes), (height/boxes) * (i/boxes), width/boxes, height/boxes);
-
+			rect(map((width/boxes) * (i%boxes), 0, width, 50, width - 50), map((height/boxes) * (i/boxes), 0, height, 50, height - 50), width/boxes, height/boxes);
+			if((i%boxes) == 0){
+				textFont(f, 16);
+				textAlign(LEFT);
+				number = "" + (int)map(i/boxes, 0, 9, 0 - (boxes/2), boxes/2);
+				println(number);
+				fill(255, 255, 255);
+				text(number, 0, (height/boxes) * (i/boxes));
+			}else if(i/boxes == 0){
+				textFont(f, 16);
+				textAlign(LEFT);
+				number = "" + (int)map(i%boxes, 0, 9, 0 - (boxes/2), boxes/2);
+				fill(255, 255, 255);
+				text(number, (width/boxes) * (i%boxes), 0);
+			}
 		}
 
 	}
