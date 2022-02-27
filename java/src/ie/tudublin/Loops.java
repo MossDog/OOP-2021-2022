@@ -100,7 +100,7 @@ public class Loops extends PApplet
         }
 		*/
 
-		
+		/*
 		background(0);
 		String number;
 		for(int i = 0; i < boxes * boxes; i++){
@@ -120,6 +120,35 @@ public class Loops extends PApplet
 				number = "" + (int)map(i%boxes, 0, 9, 0 - (boxes/2), boxes/2);
 				fill(255, 255, 255);
 				text(number, (width/boxes) * (i%boxes), 0);
+			}
+		}
+		*/
+
+		noStroke();
+		for(int i = 0; i < segments; i++){
+			for(int j = 0; j < segments; j++){
+				if(i % 2 == 0){
+					if(j % 2 == 0){
+						//light blue
+						fill(map(195, 0, 360, 0, 255), 75, 240);
+						rect(i * (width/segments), j * (height/segments), width/segments, height/segments);
+
+					}else{
+						//dark blue
+						fill(map(227, 0, 360, 0, 255), 255, 127);
+						rect(i * (width/segments), j * (height/segments), width/segments, height/segments);
+					}
+				}else{
+					if(j % 2 == 0){
+						//dark blue
+						fill(map(227, 0, 360, 0, 255), 255, 127);
+						rect(i * (width/segments), j * (height/segments), width/segments, height/segments);
+					}else{
+						//light blue
+						fill(map(195, 0, 360, 0, 255), 75, 240);
+						rect(i * (width/segments), j * (height/segments), width/segments, height/segments);
+					}
+				}
 			}
 		}
 
