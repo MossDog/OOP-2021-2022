@@ -152,42 +152,47 @@ public class Loops extends PApplet
 			}
 		}
 
-	}
-}
+		switch(mode){
+			case 0:
+				for(int i = 0; i < segments; i++){
+					fill(i*(255/segments), 255, 255);
+					rect(i*(width/segments), 0, width/segments, height);
+				}
+				break;
 
-/*ATTEMPT AT THE CODE FROM THE VIDEO
-int segs = 4;
-int segWidth = 125;
-int recX;
-//draw
-background(0);
-int xpos = mouseX;
-for(int i = 0; i < segs; i++){
+			case 1:
+				for(int i = 0; i < segments; i++){
+					fill(i*(255/segments), 255, 255);
+					rect(i*(width/segments), i*(height/segments), width/segments, height/segments);
+				}
+				break;
 
-	if(xpos > i*segWidth && xpos < (i+1)*segWidth){
-		recX = i*segWidth;
-	}
+			case 2:
+				for(int i = 0; i < segments; i++){
+					fill(i*(255/segments), 255, 255);
+					rect(i*(width/segments), i*(height/segments), width/segments, height/segments);
+					fill(i*(255/segments), 255, 255);
+					//((segments - 1) - i) is like the inverse of i for this situation
+					rect(((segments - 1) - i) * (width/segments), i*(height/segments), width/segments, height/segments);
+				}
+				break;
 
-}
-//THINGS LEFT TO DO WITH THIS PART | FIGURE OUT DIVISION PROBLEM, FIGURE OUT COLORING PROBLEM, PUT INSIDE SWITCH STATEMENT.
-fill(240, 100, 100);
-rect(recX, 0, 125, height);
+			case 3:
+				for(int i = circles; i > 0; i--){
+					fill(i * (255/circles), 255, 255);
+					ellipse(width/2, height/2, i * ((width/circles)), i * ((width/circles)));
+				}
+				break;
 
-switch(mode)	
-{
-	case 0:
-		for(int i = 0; i < 4; i++){
+			case 4:
+			
+				break;
 
-			if(xpos > i*(width/4) && xpos < i+1*(width/4)){
-				stroke(0, 0, 255);
-			}
-			else{
-				stroke(0, 0, 0);
-			}
-			rect(i*(width/4), 0, width/4, height);
+			case 5: 
 
+				break;
+				
 		}
-		break;
-	case 1:
-		break;
-} */
+		
+	}
+}
